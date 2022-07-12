@@ -1,0 +1,50 @@
+environment:
+    NODE_ENV: "development"
+    APP_STAGE: ${self:provider.stage}
+    APP_NAME: ''
+    APP_VERSION: 1.0.0
+    COMPANY_NAME: ''
+    APOLLO_LAMBDA_KEY: MUESTRADEaLGODEKEY
+    API_URL: "https://dummyapi.io/data/api/"
+    API_KEY: "60e5e4dfeb28e14a4f7e0b3d"    
+    PORT: 3000
+    REST_ROUTE_PREFIX: "/api"
+    # database mysql
+    SEQUELIZE_HOST: "localhost"
+    SEQUELIZE_DB_NAME: "service_test"
+    SEQUELIZE_USER: "root"
+    SEQUELIZE_DRIVE: "mysql"
+    SEQUELIZE_PASSWORD: ""
+    # database config
+    LOCAL_USE_URL_PARSE: true
+    LOCAL_USE_UNIFIED_TOPOLOGY: true
+    LOCAL_RETRY_WRITES: false
+    DEV_SSL: false
+    DEV_SSL_VALIDATE: false
+    DIRECT_CONNECTION: false
+    AUTH_SOURCE: "admin"
+    MONGO_DB_URL: "mongodb://127.0.0.1"
+    MONGO_DB_PORT: "27018"
+    SERVICE_DB_NAME: "service_test"
+    # Mailes SMTP Developer
+    MAILER_HOST: "smtp.gmail.com"
+    MAILER_PORT: 465
+    MAILER_SECURE: true
+    MAILER_USER_ACCOUNT: "aa@gmail.com"
+    MAILER_USER_PASS: ""
+
+    #ProviderARNs:
+    #  AGENTS_POOL: arn:aws:cognito-idp:us-east-1:099076284075:userpool/us-east-1_XNL3eSKI5
+
+
+vpc:
+    securityGroupIds:
+        - sg-51d59654
+
+    # subnetIds:
+    #   - subnet-e7d656d6
+    #   - subnet-f2403d94
+    #   - subnet-8eb08780
+    #   - subnet-3ab5b877
+    #   - subnet-da1d66fb
+    #   - subnet-e6cdb3b9

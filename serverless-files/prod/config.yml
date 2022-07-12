@@ -1,0 +1,40 @@
+environment:
+    APP_STAGE: ${self:provider.stage}
+    APP_NAME: ''
+    APP_VERSION: 1.0.0
+    COMPANY_NAME: ''
+    APOLLO_LAMBDA_KEY: MUESTRADEaLGODEKEY
+    API_URL: "https://dummyapi.io/data/api/"
+    API_KEY: "60e5e4dfeb28e14a4f7e0b3d"
+
+    DB_HOST: ''
+    DB_PORT: 3306
+    DB_SCHEMA: ''
+    DB_USER: ''
+    DB_PASSWORD: ''
+
+    # Cognito agents pool
+    #COGNITO_POOL_ID: us-east-1_XNL3eSKI5
+    #COGNITO_POOL_CLIENT_ID: 4dju3kib16vvj02s4plbpmk8v6
+
+    #ProviderARNs:
+    #  AGENTS_POOL: arn:aws:cognito-idp:us-east-1:099076284075:userpool/us-east-1_XNL3eSKI5
+    
+    # Mailes SMTP Production
+    MAILER_HOST: "smtp.gmail.com"
+    MAILER_PORT: 465
+    MAILER_SECURE: true
+    MAILER_USER_ACCOUNT: "aa@gmail.com"
+    MAILER_USER_PASS: ""
+
+vpc:
+    securityGroupIds:
+        - sg-51d59654
+
+    # subnetIds:
+    #   - subnet-e7d656d6
+    #   - subnet-f2403d94
+    #   - subnet-8eb08780
+    #   - subnet-3ab5b877
+    #   - subnet-da1d66fb
+    #   - subnet-e6cdb3b9

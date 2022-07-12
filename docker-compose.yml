@@ -1,0 +1,58 @@
+version: "2"
+services:
+    api:
+        container_name: services-api
+        build: ./
+        restart: always
+        volumes:
+            - /node_modules
+        ports:
+            - "9700:3001"
+        #depends_on:
+        #    - mongodb
+        environment:
+            NODE_ENV: development
+            APP_STAGE: docker
+            PORT: 3001
+            REST_ROUTE_PREFIX: "/api/"
+            MONGO_DB_URL: "mongodb://mongodatabase"
+            MONGO_DB_PORT: "27017"
+            SERVICE_DB_NAME: "service_test"
+            LOCAL_USE_URL_PARSE: "true"
+            LOCAL_USE_UNIFIED_TOPOLOGY: "true"
+            LOCAL_RETRY_WRITES: "false"
+            DEV_SSL: "false"
+            DEV_SSL_VALIDATE: "false"
+            DIRECT_CONNECTION: "false"
+            AUTH_SOURCE: "admin"
+            SEQUELIZE_HOST: = "localhost"
+            SEQUELIZE_DB_NAME: = "service_test"
+            SEQUELIZE_USER: = "root"
+            SEQUELIZE_DRIVE: = "mysql"
+            SEQUELIZE_PASSWORD: = ""
+        #for internal network
+        #networks:
+        #    - seguridad
+
+    #mongodb:
+    #    image: mongo
+    #    restart: always
+    #    container_name: services-database
+    #    ports:
+    #        - 27018:27018
+    #    command: mongod --noauth --port 27018
+    #    volumes:
+    #        - './mongodbdata:/data/db'
+    #    networks:
+    #        - network
+
+#for internal network
+#networks:
+#    seguridad:
+#        driver: bridge
+
+# for external network
+networks:
+  default: 
+    external: true
+    name: seguridad

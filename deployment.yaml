@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-name
+spec:
+  selector:
+    matchLabels:
+      app: service-name
+  template:
+    metadata:
+      labels:
+        app: service-name
+    spec:
+      containers:
+      - name: service-name
+        image: image-name
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "25m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        env:
+          - name: APP_STAGE
+            value: kube
+          - name: PORT
+            value: 3001
+          - name: REST_ROUTE_PREFIX
+            value: /api/
+          - name: MONGO_DB_URL
+            value: "mongodb://mongodatabase"
+          - name: MONGO_DB_PORT
+            value: 27017
+          - name: SERVICE_DB_NAME
+            value: service_test
+          - name: LOCAL_USE_URL_PARSE
+            value: "true"
+          - name: LOCAL_USE_UNIFIED_TOPOLOGY
+            value: "true"
+          - name: LOCAL_RETRY_WRITES
+            value: "false"
+          - name: DEV_SSL
+            value: "false"
+          - name: DEV_SSL_VALIDATE
+            value: "false"
+          - name: DIRECT_CONNECTION
+            value: "false"
+          - name: AUTH_SOURCE
+            value: admin
+          - name: SEQUELIZE_HOST
+            value: localhost
+          - name: SEQUELIZE_DB_NAME
+            value: service_test
+          - name: SEQUELIZE_USER
+            value: root
+          - name: SEQUELIZE_DRIVE
+            value: mysql
+          - name: SEQUELIZE_PASSWORD
+            value: ""
+        ports:
+        - containerPort: service-port
+      #imagePullSecrets:
+      #  - name: dongata-creds
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-name
+spec:
+  type: ClusterIP
+  selector:
+    app: service-name
+  ports:
+  - port: 80
+    targetPort: service-port

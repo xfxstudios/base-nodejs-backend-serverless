@@ -1,0 +1,72 @@
+image: node:16
+
+definitions:
+  steps:
+    - step: &build
+        name: build and test
+        caches: 
+          - node
+        script: 
+          - npm install
+          - npm run build:noenv
+          - npm run postbundle
+          - npm run test
+    
+    - step: &dockerize
+        name: dockerize
+        services: 
+          - docker
+        caches: 
+          - docker
+        script:
+          - if [ -v BITBUCKET_TAG ]; then
+              export IMAGE_NAME=$DOCKER_HUB_USERNAME/service:$BITBUCKET_TAG;
+            else
+              export IMAGE_NAME=$DOCKER_HUB_USERNAME/service:$BITBUCKET_COMMIT;
+            fi
+
+          # Authenticate with the registry
+          - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+
+          # Build image
+          - docker build -f Dockerfile -t $IMAGE_NAME .
+
+          # Push image
+          - docker push $IMAGE_NAME
+
+    - step: &deploy
+        name : deploy
+        script: 
+          - if [ -v BITBUCKET_TAG ]; then
+              export IMAGE_NAME=$DOCKER_HUB_USERNAME/service:$BITBUCKET_TAG;
+              export SERVICE_NAME=service;
+              export SERVICE_PORT=3001;
+            else
+              export IMAGE_NAME=$DOCKER_HUB_USERNAME/service:$BITBUCKET_COMMIT;
+              export SERVICE_NAME=service;
+              export SERVICE_PORT=3001;
+            fi
+          
+
+          - sed -i "s|image-name|$IMAGE_NAME|g" deployment.yaml;
+          - sed -i "s|service-name|$SERVICE_NAME|g" deployment.yaml;
+          - sed -i "s|service-port|$SERVICE_PORT|g" deployment.yaml;
+          - pipe: atlassian/kubectl-run:3.2.0
+            variables:
+              KUBE_CONFIG: '$KUBE_CONFIG'
+              KUBECTL_COMMAND: 'apply'
+              RESOURCE_PATH: 'deployment.yaml'
+
+pipelines:
+  pull-requests:
+    '**' : 
+      - step: *build
+  
+  branches:
+    develop:
+      - step: *build
+      - step: *dockerize
+      - step: 
+          <<: *deploy
+          name: deploy to dev
+          deployment: dev

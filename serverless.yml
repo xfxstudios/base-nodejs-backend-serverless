@@ -1,0 +1,40 @@
+service: test-serverless-rest-graphql
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  timeout: 30
+  stage: ${opt:stage}
+  region: ${env:AWS_REGION, 'us-east-1'}
+  memorySize: 128
+  #iamRoleStatements:
+  #  - Effect: 'Allow'
+  #    Action:
+  #      - 'lambda:InvokeFunction'
+  #      - 'lambda:InvokeAsync'
+  #      - 'xray:PutTraceSegments'
+  #      - 'xray:PutTelemetryRecords'
+  #      - 'sqs:*'
+  #      - 's3:*'
+  #      - 'cognito-idp:AdminInitiateAuth'
+  #    Resource: '*'
+
+  environment: ${file(${self:custom.config}):environment}
+
+functions: ${file(${self:custom.functions}):functions}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  config: serverless-files/${self:custom.stage}/config.yml
+  functions: serverless-files/${self:custom.stage}/functions.yml
+  fullName: ${self:service}-${self:custom.stage}
+
+package:
+  exclude:
+    - node_modules/**/aws-sdk/**
+    - node_modules/**/aws-lambda/**

@@ -1,0 +1,12 @@
+functions:
+  app:
+    handler: src/app.handler
+    events: 
+      - http: 
+          path: /graphql
+          method: POST
+          cors: true
+      - http: 
+          path: /playground
+          method: GET
+          cors: true
