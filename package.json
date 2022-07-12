@@ -13,7 +13,9 @@
     "local": "serverless offline --stage local --region us-east-1 --apiKey your-api-key-that-is-at-least-characters-long",
     "prod": "serverless offline --stage prod --region us-east-1 --apiKey your-api-key-that-is-at-least-characters-long",
     "qa": "serverless offline --stage qa --region us-east-1 --apiKey your-api-key-that-is-at-least-characters-long",
-    "lint": "tslint -p tsconfig.json -c tslint.json"
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "prepare": "tsc && npm run postbuild",
+    "postbuild": "copyfiles node_modules/**/* .build/ && copyfiles package.json .build/"
   },
   "keywords": [],
   "author": "",
@@ -44,6 +46,7 @@
     "typescript": "^4.7.4"
   },
   "devDependencies": {
-    "@types/node": "^18.0.1"
+    "@types/node": "^18.0.1",
+    "copyfiles": "^2.4.1"
   }
 }
