@@ -31,9 +31,17 @@ jobs:
           CI: true
         run: |
           npm ci 
+      - name: install typescript
+        run: |
           npm run install -g typescript
+      - name: compile project
+        run: |
           tsc
-          npm run install
+      - name: install dependencies
+        run: |
+          npm install
+      - name: copy folder
+        run: |
           cp -r ./node_modules ./.build
       - name: deploy
         #--> Zip the Code As we know lambda function accept the zip file.
