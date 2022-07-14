@@ -1,4 +1,4 @@
-service: test-serverless-rest-graphql
+service: test_backend
 
 plugins:
   - serverless-dotenv-plugin
