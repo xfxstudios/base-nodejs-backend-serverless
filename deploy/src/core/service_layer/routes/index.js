@@ -4,7 +4,7 @@ exports.route = void 0;
 const express_1 = require("express");
 const controller_1 = require("../../controller");
 const logRequest_middleware_1 = require("../middleware/logRequest.middleware");
-const route = (0, express_1.Router)();
+const route = express_1.Router();
 exports.route = route;
 //Routes Here!!!
 const { test } = controller_1.controllers;

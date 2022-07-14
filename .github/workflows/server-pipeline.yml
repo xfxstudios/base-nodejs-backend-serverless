@@ -10,7 +10,7 @@ on:
     - master   
   push:
     branches:
-    - develop   
+    - develop
 
 jobs:
   if_merged:
@@ -37,13 +37,14 @@ jobs:
           npm i
       - name: copy folder
         run: |
-          cp -r ./node_modules ./.build
+          cp -r ./node_modules ./deploy
+          cp ./package.json ./deploy
       - name: list files
         run: |
           ls ./
-          ls ./.build/
+          ls ./deploy/
       - name: deploy
         #--> Zip the Code As we know lambda function accept the zip file.
         run: |
-          zip -j deploy.zip ./.build/* 
+          zip -j deploy.zip ./deploy/* 
           aws lambda update-function-code --function-name=test_backend --zip-file=fileb://deploy.zip 

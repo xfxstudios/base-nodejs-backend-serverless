@@ -9,15 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestInput = void 0;
+exports.TestEntity = void 0;
 const type_graphql_1 = require("type-graphql");
-let TestInput = class TestInput {
+let TestEntity = class TestEntity {
 };
 __decorate([
-    (0, type_graphql_1.Field)({ nullable: true, defaultValue: "extraño" }),
+    type_graphql_1.Field(),
     __metadata("design:type", String)
-], TestInput.prototype, "name", void 0);
-TestInput = __decorate([
-    (0, type_graphql_1.InputType)()
-], TestInput);
-exports.TestInput = TestInput;
+], TestEntity.prototype, "message", void 0);
+TestEntity = __decorate([
+    type_graphql_1.ObjectType()
+], TestEntity);
+exports.TestEntity = TestEntity;

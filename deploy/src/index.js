@@ -15,7 +15,7 @@ const app = express();
 const pfx = process.env.REST_ROUTE_PREFIX;
 (async () => {
     // GraphQL 
-    const schema = await (0, type_graphql_1.buildSchema)({
+    const schema = await type_graphql_1.buildSchema({
         resolvers: resolvers_1.resolvers
     });
     //Middleware
@@ -23,7 +23,7 @@ const pfx = process.env.REST_ROUTE_PREFIX;
     app.use(express.json());
     app.use(express.static('public'));
     //GraphQl Load
-    app.use("/graphql", (0, express_graphql_1.graphqlHTTP)(async (req, res, params) => ({
+    app.use("/graphql", express_graphql_1.graphqlHTTP(async (req, res, params) => ({
         schema,
         introspection: false,
         customFormatErrorFn: (err) => {
@@ -35,7 +35,7 @@ const pfx = process.env.REST_ROUTE_PREFIX;
             });
         }
     })));
-    app.get("/playground", (0, graphql_playground_middleware_express_1.default)({ endpoint: "/graphql" }));
+    app.get("/playground", graphql_playground_middleware_express_1.default({ endpoint: "/graphql" }));
     //Routes Load
     app.use(pfx, routes_1.route);
     conn_1.mongoConnect;

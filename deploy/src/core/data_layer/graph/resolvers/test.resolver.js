@@ -8,16 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestEntity = void 0;
+exports.TestResolver = void 0;
 const type_graphql_1 = require("type-graphql");
-let TestEntity = class TestEntity {
+const test_entity_1 = require("../entities/test.entity");
+const test_input_1 = require("../inputs/test.input");
+let TestResolver = class TestResolver {
+    async testMethod(data) {
+        return { message: `Hola ${data.name}` };
+    }
 };
 __decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", String)
-], TestEntity.prototype, "message", void 0);
-TestEntity = __decorate([
-    (0, type_graphql_1.ObjectType)()
-], TestEntity);
-exports.TestEntity = TestEntity;
+    type_graphql_1.Query(returns => test_entity_1.TestEntity),
+    __param(0, type_graphql_1.Arg("data")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [test_input_1.TestInput]),
+    __metadata("design:returntype", Promise)
+], TestResolver.prototype, "testMethod", null);
+TestResolver = __decorate([
+    type_graphql_1.Resolver()
+], TestResolver);
+exports.TestResolver = TestResolver;
