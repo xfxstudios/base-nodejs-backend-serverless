@@ -19,9 +19,9 @@ provider:
         - 'lambda:InvokeAsync'
         - 'xray:PutTraceSegments'
         - 'xray:PutTelemetryRecords'
+        - 'cloudformation:CreateStack'
         - 'sqs:*'
         - 's3:*'
-        #- 'cognito-idp:AdminInitiateAuth'
       Resource: '*'
 
   environment: ${file(${self:custom.config}):environment}
