@@ -14,10 +14,10 @@ const type_graphql_1 = require("type-graphql");
 let TestInput = class TestInput {
 };
 __decorate([
-    type_graphql_1.Field({ nullable: true, defaultValue: "extraño" }),
+    (0, type_graphql_1.Field)({ nullable: true, defaultValue: "extraño" }),
     __metadata("design:type", String)
 ], TestInput.prototype, "name", void 0);
 TestInput = __decorate([
-    type_graphql_1.InputType()
+    (0, type_graphql_1.InputType)()
 ], TestInput);
 exports.TestInput = TestInput;

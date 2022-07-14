@@ -14,10 +14,10 @@ const type_graphql_1 = require("type-graphql");
 let TestEntity = class TestEntity {
 };
 __decorate([
-    type_graphql_1.Field(),
+    (0, type_graphql_1.Field)(),
     __metadata("design:type", String)
 ], TestEntity.prototype, "message", void 0);
 TestEntity = __decorate([
-    type_graphql_1.ObjectType()
+    (0, type_graphql_1.ObjectType)()
 ], TestEntity);
 exports.TestEntity = TestEntity;

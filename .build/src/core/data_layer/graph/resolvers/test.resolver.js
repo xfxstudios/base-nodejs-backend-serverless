@@ -22,13 +22,13 @@ let TestResolver = class TestResolver {
     }
 };
 __decorate([
-    type_graphql_1.Query(returns => test_entity_1.TestEntity),
-    __param(0, type_graphql_1.Arg("data")),
+    (0, type_graphql_1.Query)(returns => test_entity_1.TestEntity),
+    __param(0, (0, type_graphql_1.Arg)("data")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [test_input_1.TestInput]),
     __metadata("design:returntype", Promise)
 ], TestResolver.prototype, "testMethod", null);
 TestResolver = __decorate([
-    type_graphql_1.Resolver()
+    (0, type_graphql_1.Resolver)()
 ], TestResolver);
 exports.TestResolver = TestResolver;
