@@ -1,4 +1,4 @@
-service: test_backend
+service: test-backend
 
 plugins:
   - serverless-dotenv-plugin
