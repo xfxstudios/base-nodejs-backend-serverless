@@ -29,12 +29,12 @@ jobs:
       - name: install typescript
         run: |
           npm i -g typescript
-      - name: compile project
-        run: |
-          tsc
       - name: install dependencies
         run: |
           npm i
+      - name: compile project
+        run: |
+          tsc
       - name: copy folder
         run: |
           cp -r ./node_modules ./.build
