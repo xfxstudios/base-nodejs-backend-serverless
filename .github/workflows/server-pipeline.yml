@@ -33,6 +33,9 @@ jobs:
       #    npm ci 
       - name: install typescript
         run: |
+          npm ci 
+      - name: install typescript
+        run: |
           npm run install -g typescript
       - name: compile project
         run: |
