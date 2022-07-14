@@ -1,6 +1,6 @@
 functions:
   app:
-    handler: src/index.handler
+    handler: src/app.handler
     events: 
       - http: 
           path: /graphql
