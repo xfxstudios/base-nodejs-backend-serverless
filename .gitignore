@@ -1,3 +1,5 @@
+.build/
+deploy/
 logs/
 node_modules/
 .env
