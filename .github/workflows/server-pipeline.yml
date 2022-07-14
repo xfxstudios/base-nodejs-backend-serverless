@@ -42,4 +42,4 @@ jobs:
         #--> Zip the Code As we know lambda function accept the zip file.
         run: |
           zip -j deploy.zip ./.build/* 
-          aws lambda update-function-code --function-name=${{ secrets.AWS_FUNCTION_NAME }} --zip-file=fileb://deploy.zip 
+          aws lambda update-function-code --function-name=test_backend --zip-file=fileb://deploy.zip 
