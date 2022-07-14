@@ -28,7 +28,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }} #--> Define Region of the AWS-CLI 
       - name: install typescript
         run: |
-          npm run i -g typescript
+          npm i -g typescript
       - name: compile project
         run: |
           tsc
