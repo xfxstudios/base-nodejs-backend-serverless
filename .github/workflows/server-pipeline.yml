@@ -41,9 +41,8 @@ jobs:
           cp ./package.json ./deploy
       - name: list files
         run: |
-          ls ./
           ls ./deploy/
-      - name: deploy
+      - name: deploy to AWS lambda
         #--> Zip the Code As we know lambda function accept the zip file.
         run: |
           zip -j deploy.zip ./deploy/* 
