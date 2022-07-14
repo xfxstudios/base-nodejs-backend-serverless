@@ -31,10 +31,10 @@ jobs:
           CI: true
         run: |
           npm ci 
-          rm -rf node_modules && rm package-lock.json
-          npm cache clean --force
+          npm run install -g typescript
+          tsc
           npm run install
-          npm run prepare
+          cp -r ./node_modules ./.build
       - name: deploy
         #--> Zip the Code As we know lambda function accept the zip file.
         run: |
