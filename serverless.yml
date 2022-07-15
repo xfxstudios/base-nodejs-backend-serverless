@@ -1,4 +1,4 @@
-service: test-backend
+service: test-backend-lanbda
 
 plugins:
   - serverless-dotenv-plugin

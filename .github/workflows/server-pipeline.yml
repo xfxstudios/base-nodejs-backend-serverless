@@ -8,9 +8,9 @@ on:
       - closed
     branches:
     - master   
-  #push:
-  #  branches:
-  #  - develop
+  push:
+    branches:
+    - develop
 
 jobs:
   if_merged:
