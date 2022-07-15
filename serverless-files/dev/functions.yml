@@ -10,11 +10,11 @@ functions:
           path: /playground
           method: GET
           cors: true
-      - http: 
+      - httpApi: 
           path: /api/{proxy+}
           method: GET
           cors: true
-      - http: 
+      - httpApi: 
           path: /api/{proxy+}
           method: POST
           cors: true
