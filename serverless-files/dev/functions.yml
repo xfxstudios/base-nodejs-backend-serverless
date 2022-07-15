@@ -10,7 +10,7 @@ functions:
           path: /playground
           method: GET
           cors: true
-      - http: 
-          path: /api/test
+      - httpApi: 
+          path: /{proxy+}
           method: GET
           cors: true
