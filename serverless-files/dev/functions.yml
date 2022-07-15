@@ -11,6 +11,6 @@ functions:
           method: GET
           cors: true
       - httpApi: 
-          path: /api/test
+          path: /{proxy+}
           method: GET
           cors: true

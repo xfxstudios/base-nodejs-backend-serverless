@@ -8,11 +8,14 @@ import expressPlayground from "graphql-playground-middleware-express";
 import {resolvers} from './core/data_layer/graph/resolvers';
 import {mongoConnect} from './core/service_layer/config/conn';
 import {route} from "./core/service_layer/routes";
+import {log_middleware} from "./core/service_layer/middleware/logRequest.middleware";
+import {controllers} from "./core/controller";
 const serverless = require('serverless-http');
 
 const app = express();
 //const port = process.env.PORT!;
 const pfx = process.env.REST_ROUTE_PREFIX!;
+const {test} = controllers;
 
 (async () => {
 
@@ -45,6 +48,8 @@ const pfx = process.env.REST_ROUTE_PREFIX!;
     app.get("/playground", expressPlayground({ endpoint: "/graphql" }));
 
     //Routes Load
+    //app.use(`${pfx}/test`, log_middleware, test.testMethod);
+
     app.use(pfx, route);
 
     mongoConnect
